@@ -218,10 +218,17 @@ func (p *LocalPathProvisioner) Provision(opts pvController.ProvisionOptions) (*v
 						{
 							MatchExpressions: []v1.NodeSelectorRequirement{
 								{
-									Key:      KeyNode,
+									Key:      "failure-domain.beta.kubernetes.io/region",
 									Operator: v1.NodeSelectorOpIn,
 									Values: []string{
-										node.Name,
+										node.Labels["failure-domain.beta.kubernetes.io/region"],
+									},
+								},
+								{
+									Key:      "failure-domain.beta.kubernetes.io/zone",
+									Operator: v1.NodeSelectorOpIn,
+									Values: []string{
+										node.Labels["failure-domain.beta.kubernetes.io/region"],
 									},
 								},
 							},
