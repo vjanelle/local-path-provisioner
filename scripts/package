@@ -8,6 +8,8 @@ cd $(dirname $0)/..
 mkdir -p dist/artifacts
 cp bin/local-path-provisioner dist/artifacts/local-path-provisioner${SUFFIX}
 
+REPO=localhost:5000/dva
+TAG="latest"
 IMAGE=${REPO}/local-path-provisioner:${TAG}
 DOCKERFILE=package/Dockerfile
 if [ -e ${DOCKERFILE}.${ARCH} ]; then
